@@ -3,16 +3,11 @@
 package extractor
 
 import (
-	"fmt"
-	_ "image/gif"
-	_ "image/jpeg"
-	_ "image/png"
-	"os"
+  "image"
 )
 
 // Extractor represents the color palette extractor instance associated with a single image.
 type Extractor struct {
-	filename string
 	quality  int
 	pixels   []pixel
 }
@@ -22,26 +17,18 @@ type Extractor struct {
 // The provided quality parameter behaves in the following manner:
 // the bigger the number, the faster a color will be returned but the greater the likelihood
 // that it will not be the visually most dominant color. 1 then refers the highest quality.
-func NewExtractor(filename string, quality int) *Extractor {
+func NewExtractor(img image.Image, quality int) (*Extractor, error) {
 	extractor := &Extractor{}
 
-	reader, err := os.Open(filename)
+	pixels, err := getPixels(img, quality)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err)
-	}
-	defer reader.Close()
-
-	pixels, err := getPixels(reader, quality)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s", err)
-		os.Exit(1)
+    return nil, err
 	}
 
-	extractor.filename = filename
 	extractor.quality = quality
 	extractor.pixels = pixels
 
-	return extractor
+	return extractor, nil
 }
 
 // GetPalette builds a color palette.

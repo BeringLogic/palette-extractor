@@ -2,7 +2,6 @@ package extractor
 
 import (
 	"image"
-	"io"
 )
 
 type pixel struct {
@@ -12,12 +11,7 @@ type pixel struct {
 	A int
 }
 
-func getPixels(file io.Reader, quality int) ([]pixel, error) {
-	img, _, err := image.Decode(file)
-	if err != nil {
-		return nil, err
-	}
-
+func getPixels(img image.Image, quality int) ([]pixel, error) {
 	bounds := img.Bounds()
 	width, height := bounds.Max.X, bounds.Max.Y
 
