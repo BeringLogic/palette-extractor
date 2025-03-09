@@ -1,7 +1,7 @@
 palette-extractor
 =================
-[![Go Report Card](https://goreportcard.com/badge/github.com/BeringLogic/palette-extractor)](https://goreportcard.com/report/BeringLogic/palette-extractor)
-[![GoDoc](https://godoc.org/github.com/BeringLogic/palette-extractor?status.svg)](https://godoc.org/github.com/BeringLogic/palette-extractor)
+[![Go Report Card](https://goreportcard.com/badge/github.com/thomas-bouvier/palette-extractor)](https://goreportcard.com/report/thomas-bouvier/palette-extractor)
+[![GoDoc](https://godoc.org/github.com/thomas-bouvier/palette-extractor?status.svg)](https://godoc.org/github.com/thomas-bouvier/palette-extractor)
 
 This program extracts the dominant color or a representative color palette from an image.
 
@@ -14,7 +14,7 @@ package main
 
 import (
     "os"
-	"fmt"
+    "fmt"
     "image"
     _ "image/gif"
     _ "image/jpeg"
@@ -22,7 +22,7 @@ import (
 
     _ "golang.org/x/image/webp"
 
-	"github.com/BeringLogic/palette-extractor"
+    "github.com/BeringLogic/palette-extractor"
 )
 
 func main() {
@@ -39,15 +39,15 @@ func main() {
         return
     }
 
-	// Creating the extractor object
-	extractor := extractor.NewExtractor(img, 10)
+    // Creating the extractor object
+    extractor := extractor.NewExtractor(img, 10)
 
-	// Displaying the top 5 dominant colors of the image
-	fmt.Println(extractor.GetPalette(5))
+    // Displaying the top 5 dominant colors of the image
+    fmt.Println(extractor.GetPalette(5))
 }
 ```
 
-You can find [the complete documentation](https://godoc.org/github.com/BeringLogic/palette-extractor) on GoDoc.
+You can find [the complete documentation](https://godoc.org/github.com/thomas-bouvier/palette-extractor) on GoDoc.
 
 ## Example
 
